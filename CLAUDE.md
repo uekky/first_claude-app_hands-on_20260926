@@ -2,6 +2,25 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## プロジェクト概要
+
+- 作るもの：日報テンプレートジェネレーター
+  技術：Vite + React + TypeScript
+- 対象：コードを書いた経験ゼロの受講者
+
+## 開発ルール
+
+1. コードを書く前に方針を3行で説明する
+2. 一度に1つの機能だけ実装する
+3. 主に触るのは `src/App.tsx` のみ
+4. できたら必ずブラウザで動作確認を促す
+
+## 制約（禁止事項）
+
+- 追加のライブラリはインストールしない
+- CSS は `src/index.css` に書く
+- データベースや保存機能は作らない
+
 ## Commands
 
 - `npm run dev` — Vite dev server with HMR
@@ -13,7 +32,7 @@ There is no test setup in this project yet.
 
 ## State of the project
 
-This is the stock `create-vite` React + TypeScript scaffold, essentially unmodified: `src/App.tsx` is still the template landing page (counter, logos, docs links) and `src/main.tsx` is the `createRoot` + `StrictMode` entry. Treat everything under `src/` as placeholder content to be replaced, not as an existing architecture to preserve.
+`src/App.tsx` holds the whole tool: a `{date, client, content, nextAction}` state object, a `useMemo` that renders it into the plain-text report, and a copy button (`navigator.clipboard` with an `execCommand` fallback). `src/main.tsx` is the `createRoot` + `StrictMode` entry and should not need changes. All styling lives in `src/index.css`; there is no `App.css`.
 
 ## Toolchain notes
 
@@ -26,4 +45,4 @@ This is the stock `create-vite` React + TypeScript scaffold, essentially unmodif
 
 ## Assets
 
-`public/` files (`icons.svg`, `favicon.svg`) are referenced by absolute URL (`/icons.svg#documentation-icon`); `src/assets/` files are imported as modules and hashed by Vite.
+`public/` files (`icons.svg`, `favicon.svg`) are referenced by absolute URL; `src/assets/` files are imported as modules and hashed by Vite. Both are leftovers from the Vite template and are currently unused by the app.
